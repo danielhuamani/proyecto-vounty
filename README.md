@@ -1,3 +1,5 @@
 # proyecto-vounty
 
-La configuracion del proyecto: esta en el archivo-> settings.json
+Proyecto de portal de noticias
+
+configuracion de la base de datos se encuentra en el archivo -> settings.json

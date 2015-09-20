@@ -1,0 +1,56 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+	<section class="listado-pagina wancho">
+
+		<div class="cnt-tabla-listado">
+			<div class="cnt-registrar-noticia">
+				<a href="{% url 'usuario:crear_pagina' %}" class="crear-entrada noticia-lados">
+					Crear Entrada
+				</a>
+				<a href="" class="ver-pagina noticia-lados">
+					Ver pagina
+				</a>
+			</div>
+			<table>
+			  <tr class="cabecera">
+			    <td>CODIGO</td>
+			    <td>TITULO</td>
+			    <td>FECHA</td>
+			    <td>ESTADO</td>
+			    <td>ACCIONES</td>
+			  </tr>
+			  <tr class="contenido">
+			  	<td>0001</td>
+			    <td>Titulo de entrada 1   </td>
+			    <td>15-05-2014</td>
+			    <td>Publicado</td>
+			    <td class="enlace"><a href="">Ver</a>
+							<a href="">Eliminar</a>
+			    </td>
+
+			  </tr>
+			  <tr class="contenido">
+			  	<td>0001</td>
+			    <td>Titulo de entrada 1   </td>
+			    <td>15-05-2014</td>
+			    <td>Publicado</td>
+			    <td class="enlace"><a href="">Ver</a>
+							<a href="">Eliminar</a>
+			    </td>
+
+			  </tr>
+			  <tr class="contenido">
+			  	<td>0001</td>
+			    <td>Titulo de entrada 1   </td>
+			    <td>15-05-2014</td>
+			    <td>Publicado</td>
+			    <td class="enlace"><a href="">Ver</a>
+							<a href="">Eliminar</a>
+			    </td>
+
+			  </tr>
+			</table>
+		</div>
+	</section>
+{% endblock content %}

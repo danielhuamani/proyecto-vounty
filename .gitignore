@@ -1,0 +1,12 @@
+# base de datos
+*.sqlite
+*.sqlite3
+*.db
+data/*
+apps
+# Python files
+*.pyc
+*.pyo
+*.elc
+*.egg-info
+.project

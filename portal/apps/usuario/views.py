@@ -12,8 +12,9 @@ from .models import Usuario
 from .forms import IngresarForm, NoticiaForm
 from apps.noticia.models import Noticia
 
-# Create your views here.
+
 def ingresar(request):
+    ''' Vista de login '''
     if request.method == "POST":
         form = IngresarForm(request.POST)
 
@@ -41,6 +42,7 @@ def salir(request):
 
 
 class RegistroCreate(CreateView):
+    ''' Vista para registrar usuario, se uso vistas basadas en clases '''
     model = Usuario
     fields = ['usuario', 'password', 'email']
     template_name = 'portal/registro.html'
@@ -49,12 +51,14 @@ class RegistroCreate(CreateView):
 
 @login_required(login_url=reverse_lazy('usuario:ingresar'))
 def listado_paginas(request):
+    ''' Vista para mostrar la tabla de las entradas creadas'''
     noticias = Noticia.objects.all().order_by('-fecha')
     return render_to_response('portal/listado-pagina.html', locals(), context_instance=ctx(request))
 
 
 @login_required(login_url=reverse_lazy('usuario:ingresar'))
 def crear_pagina(request):
+    ''' Vista para crear un entradas'''
     if request.method == "POST":
         form = NoticiaForm(request.POST, request.FILES)
         if form.is_valid():
@@ -66,12 +70,14 @@ def crear_pagina(request):
 
 
 def ver_pagina(request, pk):
+    ''' Vista ver el detalle de una pagina'''
     noticia = get_object_or_404(Noticia, pk=pk)
     return render_to_response('portal/ver-pagina.html', locals(), context_instance=ctx(request))
 
 
 @login_required(login_url=reverse_lazy('usuario:ingresar'))
 def eliminar_pagina(request, pk):
+    ''' Vista que sirver para eliminar luego hacer una redireccion'''
     noticia = get_object_or_404(Noticia, pk=pk)
     noticia.delete()
     return redirect(reverse_lazy('usuario:listado_paginas'))

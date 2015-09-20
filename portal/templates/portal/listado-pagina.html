@@ -20,36 +20,20 @@
 			    <td>ESTADO</td>
 			    <td>ACCIONES</td>
 			  </tr>
+			  {% for noticia in noticias %}
+
+
 			  <tr class="contenido">
-			  	<td>0001</td>
-			    <td>Titulo de entrada 1   </td>
-			    <td>15-05-2014</td>
-			    <td>Publicado</td>
+			  	<td>{{noticia.id}}</td>
+			    <td>{{noticia.titulo}}</td>
+			    <td>{{noticia.fecha}}</td>
+			    <td>{{noticia.get_estado_display}}</td>
 			    <td class="enlace"><a href="">Ver</a>
-							<a href="">Eliminar</a>
+							<a href="{{noticia.get_delete_url}}">Eliminar</a>
 			    </td>
 
 			  </tr>
-			  <tr class="contenido">
-			  	<td>0001</td>
-			    <td>Titulo de entrada 1   </td>
-			    <td>15-05-2014</td>
-			    <td>Publicado</td>
-			    <td class="enlace"><a href="">Ver</a>
-							<a href="">Eliminar</a>
-			    </td>
-
-			  </tr>
-			  <tr class="contenido">
-			  	<td>0001</td>
-			    <td>Titulo de entrada 1   </td>
-			    <td>15-05-2014</td>
-			    <td>Publicado</td>
-			    <td class="enlace"><a href="">Ver</a>
-							<a href="">Eliminar</a>
-			    </td>
-
-			  </tr>
+			  {% endfor %}
 			</table>
 		</div>
 	</section>

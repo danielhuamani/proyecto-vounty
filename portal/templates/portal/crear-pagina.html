@@ -10,8 +10,8 @@
 				</a>
 
 			</div>
-			<div class="cnt-formulario" enctype="multipart/form-data">
-				<form action="#" method="POST" clas="form-crear-pagina">
+			<div class="cnt-formulario" >
+				<form action="#" method="POST" clas="form-crear-pagina" enctype="multipart/form-data">
 				{% csrf_token %}
 					<ul class="ul-simple">
 						<li>
@@ -51,12 +51,7 @@
 {% block js %}
 <script>
 	$(document).ready(function() {
-		$(".ver-pagina").click(function(event) {
-			/* Act on the event */
-			event.preventDefault()
-			console.log("esad")
-			$(".form-crear-pagina").submit()
-		});
+
 	});
 </script>
 {% endblock js %}

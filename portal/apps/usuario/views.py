@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render_to_response, redirect
+from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext as ctx
@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.utils import timezone
 from django.contrib import messages
 from .models import Usuario
-from .forms import IngresarForm
+from .forms import IngresarForm, NoticiaForm
 from apps.noticia.models import Noticia
 
 # Create your views here.
@@ -49,18 +49,36 @@ class RegistroCreate(CreateView):
 
 @login_required(login_url=reverse_lazy('usuario:ingresar'))
 def listado_paginas(request):
+    noticias = Noticia.objects.all().order_by('-fecha')
     return render_to_response('portal/listado-pagina.html', locals(), context_instance=ctx(request))
 
 
-# @login_required(login_url=reverse_lazy('usuario:ingresar'))
-# def crear_pagina(request):
-#     return render_to_response('portal/crear-pagina.html', locals(), context_instance=ctx(request))
+@login_required(login_url=reverse_lazy('usuario:ingresar'))
+def crear_pagina(request):
+    if request.method == "POST":
+        form = NoticiaForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse_lazy('usuario:listado_paginas'))
+    else:
+        form = NoticiaForm()
+    return render_to_response('portal/crear-pagina.html', locals(), context_instance=ctx(request))
 
 
-class RegistroPaginaCreate(CreateView):
-    model = Noticia
-    fields = ['estado', 'imagen', 'contenido', 'titulo']
-    template_name = 'portal/crear-pagina.html'
-    success_url = reverse_lazy('usuario:listado_paginas')
+def ver_pagina(request, pk):
+    noticia = get_object_or_404(Noticia, pk=pk)
+    return render_to_response('portal/ver-pagina.html', locals(), context_instance=ctx(request))
+
+
+@login_required(login_url=reverse_lazy('usuario:ingresar'))
+def eliminar_pagina(request, pk):
+    noticia = get_object_or_404(Noticia, pk=pk)
+    noticia.delete()
+    return redirect(reverse_lazy('usuario:listado_paginas'))
+# class RegistroPaginaCreate(CreateView):
+#     model = Noticia
+#     fields = ['estado', 'imagen', 'contenido', 'titulo']
+#     template_name = 'portal/crear-pagina.html'
+#     success_url = reverse_lazy('usuario:listado_paginas')
 # def registro(request):
 #     return render_to_response('portal/registro.html', locals(), context_instance=ctx(request))

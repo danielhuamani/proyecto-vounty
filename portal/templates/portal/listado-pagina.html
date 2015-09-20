@@ -28,8 +28,8 @@
 			    <td>{{noticia.titulo}}</td>
 			    <td>{{noticia.fecha}}</td>
 			    <td>{{noticia.get_estado_display}}</td>
-			    <td class="enlace"><a href="">Ver</a>
-							<a href="{{noticia.get_delete_url}}">Eliminar</a>
+			    <td class="enlace"><a target="_blank" href="{{noticia.get_absolute_url}}">Ver</a>
+							<a target="_blank" href="{{noticia.get_delete_url}}">Eliminar</a>
 			    </td>
 
 			  </tr>

@@ -12,7 +12,7 @@ class Noticia(models.Model):
     titulo = models.CharField("Titulo", max_length=120)
     estado = models.CharField("Estado", max_length=120, choices=ESTADO, default='P')
     fecha = models.DateField('Fecha', auto_now=True)
-    imagen = models.FileField('imagen', max_length=100, upload_to="imagen")
+    imagen = models.ImageField('imagen', max_length=100, upload_to="imagen")
     contenido = models.TextField("Contenido")
 
     class Meta:

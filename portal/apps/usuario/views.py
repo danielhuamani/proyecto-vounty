@@ -75,10 +75,3 @@ def eliminar_pagina(request, pk):
     noticia = get_object_or_404(Noticia, pk=pk)
     noticia.delete()
     return redirect(reverse_lazy('usuario:listado_paginas'))
-# class RegistroPaginaCreate(CreateView):
-#     model = Noticia
-#     fields = ['estado', 'imagen', 'contenido', 'titulo']
-#     template_name = 'portal/crear-pagina.html'
-#     success_url = reverse_lazy('usuario:listado_paginas')
-# def registro(request):
-#     return render_to_response('portal/registro.html', locals(), context_instance=ctx(request))
